@@ -31,15 +31,11 @@ namespace GetScreen
         int count = 0, clicks = 0;
         private void button1_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Normal;
             try
             {
                 mh = new MouseHook();
                 mh.MouseClickEvent += mh_MouseClickEvent;
-                while (clicks == 0)
-                {
-                    mh.Start();
-                }
                 if (clicks == 1)
                 {
                     startPoint = new Point();
@@ -49,7 +45,6 @@ namespace GetScreen
                 {
                     endPoint = new Point();
                     endPoint = p;
-                    mh.Stop();
                 }
 
                 //计算宽，高
@@ -65,7 +60,7 @@ namespace GetScreen
             {
                 mh.Dispose();
             }
-            this.WindowState = FormWindowState.Normal;
+            
         }
 
         private void mh_MouseClickEvent(object sender, MouseEventArgs e)

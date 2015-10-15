@@ -30,8 +30,8 @@ namespace GetScreen
                 ProcessModule curModule = curProcess.MainModule;
                 //Create an instance of HookProc. 
                 hProc = new Win32Api.HookProc(MouseHookProc);
-                hMouseHook = Win32Api.SetWindowsHookEx(WH_MOUSE_LL, hProc, Win32Api.GetModuleHandle(curModule.ModuleName), 0);// Win32Api.GetCurrentThreadId());//curProcess.Id//Process.GetCurrentProcess().Id
-
+                //hMouseHook = Win32Api.SetWindowsHookEx(WH_MOUSE_LL, hProc, Win32Api.GetModuleHandle(curModule.ModuleName), 0);// Win32Api.GetCurrentThreadId());//curProcess.Id//Process.GetCurrentProcess().Id
+                hMouseHook = Win32Api.SetWindowsHookEx(WH_MOUSE_LL, hProc, Win32Api.GetModuleHandle("user32"), 0);//
                 //SetWindowsHookEx fails.
                 if (hMouseHook == 0)
                 {
@@ -59,17 +59,20 @@ namespace GetScreen
                     //Mouse left key down
                     case WM_LBUTTONDOWN:
                         clicks = 1;
-
                         break;
                     //Mouse Left key up
                     case WM_LBUTTONUP:
+                        clicks = 2;
                         break;
                     default:
                         break;
                 }
-                button = MouseButtons.Left;
-                MouseEventArgs e = new MouseEventArgs(button, clicks, MyMouseHookStruct.pt.x, MyMouseHookStruct.pt.y, 0);
-                MouseClickEvent(this, e);
+                if (clicks > 0)
+                {
+                    button = MouseButtons.Left;
+                    MouseEventArgs e = new MouseEventArgs(button, clicks, MyMouseHookStruct.pt.x, MyMouseHookStruct.pt.y, 0);
+                    MouseClickEvent(this, e);
+                }
             }
             return Win32Api.CallNextHookEx(hMouseHook, nCode, wParam, lParam);
         }
