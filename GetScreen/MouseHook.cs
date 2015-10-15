@@ -18,6 +18,10 @@ namespace GetScreen
         public const int WM_LBUTTONDOWN = 0x201;
         public const int WM_LBUTTONUP = 0x202;
         public Win32Api.HookProc hProc;
+        public static Point StartPoint = new Point();
+        public static Point EndPoint = new Point();
+        public static bool IsSaved = false;
+
         public MouseHook()
         {
             //Start();
@@ -58,11 +62,13 @@ namespace GetScreen
                 {
                     //Mouse left key down
                     case WM_LBUTTONDOWN:
-                        clicks = 1;
+                        StartPoint = new Point(MyMouseHookStruct.pt.x, MyMouseHookStruct.pt.y);
+                        IsSaved = false;
                         break;
                     //Mouse Left key up
                     case WM_LBUTTONUP:
-                        clicks = 2;
+                        EndPoint = new Point(MyMouseHookStruct.pt.x, MyMouseHookStruct.pt.y);
+                        SavePic();
                         break;
                     default:
                         break;
@@ -75,6 +81,20 @@ namespace GetScreen
                 }
             }
             return Win32Api.CallNextHookEx(hMouseHook, nCode, wParam, lParam);
+        }
+        public void SavePic()
+        {
+            if (IsSaved)
+                return;
+
+            int width = EndPoint.X - StartPoint.X;
+            int height = EndPoint.Y - StartPoint.Y;
+            Image myImg = new Bitmap(width, height);
+            Graphics g = Graphics.FromImage(myImg);
+            g.CopyFromScreen(StartPoint, new Point(0, 0), new Size(width, height));
+            myImg.Save("c:\\Capture.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+            MessageBox.Show("当前屏幕已经保存为capture.jpg文件！");
+            IsSaved = true;
         }
 
         public void Dispose()

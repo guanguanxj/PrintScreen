@@ -27,8 +27,8 @@ namespace GetScreen
             MessageBox.Show("当前屏幕已经保存为capture.jpg文件！");
         }
         MouseHook mh;
-        Point startPoint, endPoint, p;
-        int count = 0, clicks = 0;
+        Point p;
+        int clicks = 0;
         private void button1_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
@@ -36,25 +36,11 @@ namespace GetScreen
             {
                 mh = new MouseHook();
                 mh.MouseClickEvent += mh_MouseClickEvent;
-                if (clicks == 1)
+                while (clicks == 0)
                 {
-                    startPoint = new Point();
-                    startPoint = p;
+                    mh.Start();
+                    return;
                 }
-                if (clicks == 2)
-                {
-                    endPoint = new Point();
-                    endPoint = p;
-                }
-
-                //计算宽，高
-                int width = endPoint.X - startPoint.X;
-                int height = endPoint.Y - startPoint.Y;
-                Image myImg = new Bitmap(width, height);
-                Graphics g = Graphics.FromImage(myImg);
-                g.CopyFromScreen(startPoint, endPoint, new Size(width, height));
-                myImg.Save("Capture.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                MessageBox.Show("当前屏幕已经保存为capture.jpg文件！");
             }
             catch (Exception ex)
             {
