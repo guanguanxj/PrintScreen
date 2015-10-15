@@ -1,0 +1,9 @@
+d:\users\jing_xu@ctrip.com\documents\visual studio 2010\Projects\GetScreen\GetScreen\bin\Debug\GetScreen.exe
+d:\users\jing_xu@ctrip.com\documents\visual studio 2010\Projects\GetScreen\GetScreen\bin\Debug\GetScreen.pdb
+d:\users\jing_xu@ctrip.com\documents\visual studio 2010\Projects\GetScreen\GetScreen\obj\x86\Debug\ResolveAssemblyReference.cache
+d:\users\jing_xu@ctrip.com\documents\visual studio 2010\Projects\GetScreen\GetScreen\obj\x86\Debug\GetScreen.Form1.resources
+d:\users\jing_xu@ctrip.com\documents\visual studio 2010\Projects\GetScreen\GetScreen\obj\x86\Debug\GetScreen.Properties.Resources.resources
+d:\users\jing_xu@ctrip.com\documents\visual studio 2010\Projects\GetScreen\GetScreen\obj\x86\Debug\GenerateResource.read.1.tlog
+d:\users\jing_xu@ctrip.com\documents\visual studio 2010\Projects\GetScreen\GetScreen\obj\x86\Debug\GenerateResource.write.1.tlog
+d:\users\jing_xu@ctrip.com\documents\visual studio 2010\Projects\GetScreen\GetScreen\obj\x86\Debug\GetScreen.exe
+d:\users\jing_xu@ctrip.com\documents\visual studio 2010\Projects\GetScreen\GetScreen\obj\x86\Debug\GetScreen.pdb
